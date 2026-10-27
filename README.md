@@ -141,6 +141,57 @@ Beberapa bot menjalankan tes verifikasi shell (evaluasi aritmetika `$((a*b+c))`,
 
 ---
 
+## 🛡️ Integrasi Real-Time ke Wazuh SIEM
+
+Setelah analisis batch, log honeypot diintegrasikan ke **Wazuh SIEM** secara **real-time** — tiap serangan yang masuk ke honeypot langsung memicu alert di dashboard dalam hitungan detik, dengan pemetaan MITRE ATT&CK otomatis.
+
+### Arsitektur
+
+```
+VPS Honeypot (publik)                    Home Lab (VirtualBox)
+┌──────────────────────┐                 ┌──────────────────────┐
+│  Cowrie honeypot      │                 │  Wazuh SIEM Server    │
+│  + Wazuh agent        │ ===Tailscale==> │  (manager+indexer+    │
+│  (100.115.11.109)     │   mesh VPN      │   dashboard)          │
+│                       │   terenkripsi   │  (100.66.89.36)       │
+└──────────────────────┘                 └──────────────────────┘
+       log event  ──────────────────────────► alert real-time
+```
+
+### Tantangan & solusi
+SIEM berada di lab lokal (di balik NAT rumah), honeypot di internet publik — keduanya tidak bisa saling terhubung langsung. Membuka port router untuk SIEM berisiko (mengekspos SIEM ke internet). Solusinya: **Tailscale** — mesh VPN berbasis WireGuard yang menghubungkan VPS dan SIEM lewat tunnel terenkripsi **tanpa membuka satu pun port router**. Wazuh agent di VPS mengirim log ke IP Tailscale SIEM, aman dan real-time.
+
+### Custom Detection Rules
+
+Rules ditulis berdasarkan perilaku penyerang nyata yang teramati, dipetakan ke MITRE ATT&CK:
+
+| Rule ID | Deteksi | Level | MITRE |
+|---|---|---|---|
+| 100201 | Login berhasil ke honeypot | 8 | T1078 Valid Accounts |
+| 100202 | Eksekusi perintah shell | 6 | T1059.004 Unix Shell |
+| 100203 | **SSH key injection** (Outlaw botnet) | **12** | T1098.004 SSH Authorized Keys |
+| 100204 | Ingress tool transfer (wget/curl) | 10 | T1105 |
+
+Contoh definisi rule (deteksi SSH key injection — upaya persistence):
+```xml
+<rule id="100203" level="12">
+  <if_sid>100202</if_sid>
+  <field name="input">authorized_keys</field>
+  <description>Cowrie: SSH KEY INJECTION dari $(src_ip) - persistence [T1098.004]</description>
+  <mitre>
+    <id>T1098.004</id>
+  </mitre>
+</rule>
+```
+
+### Hasil
+Serangan asli dari internet muncul real-time di dashboard Wazuh dengan level prioritas dan konteks MITRE — persis alur kerja detection engineering seorang SOC analyst.
+
+![Wazuh Dashboard - Cowrie Alerts](wazuh_cowrie_alerts.png)
+
+### Keterampilan yang didemonstrasikan
+Wazuh SIEM administration, custom decoder/rule engineering, MITRE ATT&CK mapping, secure mesh networking (Tailscale/WireGuard), agent-based real-time log forwarding, dan desain arsitektur monitoring yang aman tanpa mengekspos jaringan internal.
+
 ## Pengembangan Lanjutan
 
 - Perpanjang pengumpulan data (mingguan) untuk tren yang lebih kaya.
