@@ -189,6 +189,9 @@ Serangan asli dari internet muncul real-time di dashboard Wazuh dengan level pri
 
 ![Wazuh Dashboard - Cowrie Alerts](wazuh_cowrie_alerts.png)
 
+**Dashboard visual SOC** — top attacker IP, distribusi teknik MITRE, timeline serangan, jenis event, dan rule yang paling sering terpicu, semua dari data serangan live:
+![Wazuh Cowrie Dashboard](wazuh_cowrie_dashboard.png)
+
 ### Keterampilan yang didemonstrasikan
 Wazuh SIEM administration, custom decoder/rule engineering, MITRE ATT&CK mapping, secure mesh networking (Tailscale/WireGuard), agent-based real-time log forwarding, dan desain arsitektur monitoring yang aman tanpa mengekspos jaringan internal.
 
