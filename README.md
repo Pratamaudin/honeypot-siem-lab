@@ -1,4 +1,4 @@
-# 🍯 SSH Honeypot — Analisis Serangan Dunia Nyata dengan Cowrie
+# SSH Honeypot — Analisis Serangan Dunia Nyata dengan Cowrie
 
 Men-deploy honeypot SSH (Cowrie) di VPS publik, membiarkannya menangkap serangan nyata dari internet, lalu menganalisis telemetri yang terkumpul: statistik serangan, enrichment IP (GeoIP + reputasi AbuseIPDB), dan pemetaan perilaku penyerang ke framework **MITRE ATT&CK**.
 
@@ -141,7 +141,7 @@ Beberapa bot menjalankan tes verifikasi shell (evaluasi aritmetika `$((a*b+c))`,
 
 ---
 
-## 🛡️ Integrasi Real-Time ke Wazuh SIEM
+## Integrasi Real-Time ke Wazuh SIEM
 
 Setelah analisis batch, log honeypot diintegrasikan ke **Wazuh SIEM** secara **real-time** — tiap serangan yang masuk ke honeypot langsung memicu alert di dashboard dalam hitungan detik, dengan pemetaan MITRE ATT&CK otomatis.
 
