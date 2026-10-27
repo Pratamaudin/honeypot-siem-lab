@@ -1,0 +1,28 @@
+query,country,isp,attacks
+164.30.17.82,Germany,TELEKOM,1904
+2.57.122.150,The Netherlands,Unmanaged LTD,1057
+92.118.39.49,United States,Unmanaged LTD,85
+43.134.90.119,Singapore,Shenzhen Tencent Computer Systems Company Limited,23
+122.15.129.26,India,VODAFONE-STATIC,23
+50.6.205.99,United States,Oracle Corporation,23
+103.218.242.13,Hong Kong,Ucloud Information Technology (hk) Limited,23
+42.200.66.164,Hong Kong,PCCW IMSBiz,23
+203.205.37.233,Vietnam,CMC Telecom Infrastructure Company,23
+36.255.220.145,Hong Kong,UCLOUD INFORMATION TECHNOLOGY (HK) LIMITED,23
+59.144.92.154,India,Bharti Airtel Limited,23
+43.157.243.165,Indonesia,Shenzhen Tencent Computer Systems Company Limited,23
+130.12.180.51,The Netherlands,Netiface LLC,16
+37.120.162.199,Germany,netcup GmbH,16
+47.254.241.87,Malaysia,Alibaba Cloud LLC,15
+35.240.102.107,Belgium,Google LLC,9
+104.155.100.236,Belgium,Google LLC,7
+118.193.44.104,Hong Kong,UCLOUD INFORMATION TECHNOLOGY (HK) LIMITED,6
+218.78.141.57,China,China Telecom (Group),6
+212.73.148.8,Singapore,Modat B.V.,4
+4.148.17.138,United States,Microsoft Corporation,4
+144.172.249.183,Canada,Le Groupe Videotron Ltee,4
+59.80.54.218,Germany,China Unicom IP network,4
+212.73.148.49,Singapore,Modat B.V.,3
+223.83.183.254,China,China Mobile communications corporation,3
+45.79.207.181,United States,"Akamai Technologies, Inc.",3
+105.156.130.123,Morocco,ADSL Maroc telecom,2
